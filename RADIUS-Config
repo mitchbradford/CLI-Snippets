@@ -1,0 +1,10 @@
+# RADIUS IOS Config
+aaa new-model
+!
+!
+aaa authentication login default group RADIUS local
+aaa authentication enable default enable
+
+radius server RADIUS
+ address ipv4 x.x.x.x auth-port 1812 acct-port 1813
+ key xxxyyyzzz

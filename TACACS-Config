@@ -1,0 +1,13 @@
+aaa new-model
+
+tacacs server CLEARPASS01
+address ipv4 <IP Address>
+key 0 <key>
+
+aaa group server tacacs+ CLEARPASS-TACACS
+server name CLEARPASS01
+ip tacacs source-interface vlan 99
+!
+aaa authentication login default group CLEARPASS-TACACS local 
+aaa authentication enable default group CLEARPASS-TACACS enable 
+aaa authorization exec default group CLEARPASS-TACACS local if-authenticated

@@ -1,4 +1,4 @@
-# RADIUS IOS Config
+# RADIUS IOS Management Config
 aaa new-model
 !
 !
@@ -8,3 +8,26 @@ aaa authentication enable default enable
 radius server RADIUS
  address ipv4 x.x.x.x auth-port 1812 acct-port 1813
  key xxxyyyzzz
+
+# RADIUS IOS Device Auth Config
+aaa new-model
+
+radius server dot1x-auth1
+address ipv4 <CPPM SERVER> auth-port 1812 acct-port 1813
+timeout 2
+retransmit 1
+key 7 <key>
+
+aaa group server radius dot1x-auth
+ server name dot1x-auth1
+
+aaa authentication dot1x default group dot1x-auth
+aaa accounting dot1x default start-stop group dot1x-auth
+aaa authorization network default group dot1x-auth
+
+dot1x system-auth-control
+
+INT 1/1/1
+authentication port-control auto
+ dot1x pae authenticator (Remove this if you don't want 802.1x and just MAB)
+Mab (Remove this if you don't want MAB)

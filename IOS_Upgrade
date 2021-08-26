@@ -1,0 +1,13 @@
+## Bundled Mode ##
+
+# Copy IOS From FTP
+copy ftp://<username>:<password>@<IP address>/<filename> flash1:
+
+# Verify MD5 Hash (get hash from Cisco download site)
+verify /md5 <file> <checksum>
+
+# Configure Boot
+Boot system switch all flash:/<file>.bin
+
+# Verify Boot Configuration
+show boot
